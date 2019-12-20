@@ -8,9 +8,28 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import reduxStore from './redux/reduxStore'
+
+const store = reduxStore()
+
+const Routes = () => (
+  <Switch>
+    <Route path="/counter">
+      <Counter/>
+    </Route>
+    <Route path="/filmovi">
+      <Filmovi/>
+    </Route>
+    <Route exact path="/">
+      <Home/>
+    </Route>
+  </Switch>
+)
 
 class App extends React.Component {
   render(){
+    console.log(store)
     return (
       <Router>
         <div>
@@ -29,17 +48,9 @@ class App extends React.Component {
             </ul>
           </nav>
 
-          <Switch>
-            <Route path="/counter">
-              <Counter/>
-            </Route>
-            <Route path="/filmovi">
-              <Filmovi/>
-            </Route>
-            <Route exact path="/">
-              <Home/>
-            </Route>
-          </Switch>
+        <Provider store={store}>
+          <Routes />
+        </Provider>
 
         </div>
       </Router>

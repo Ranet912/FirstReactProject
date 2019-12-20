@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import './App.css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { incrementCounter, decrementCounter } from './redux/modules/counter'
 
 class Counter extends Component {
   constructor(props){
@@ -10,22 +13,18 @@ class Counter extends Component {
   }
 
 uvecaj = () => {
-  this.setState({
-    broj: this.state.broj + 1
-  })
+  this.props.incrementCounter()
 }
 
 smanji = () => {
-  this.setState({
-    broj: this.state.broj - 1
-  })
+  this.props.decrementCounter()
 }
 
   render() {
-    console.log('broj', this.state.broj)
+    console.log('broj', this.props)
     return(
       <div>
-        <p>{this.state.broj}</p>
+        <p>{this.props.broj}</p>
         <p>{this.props.ime}</p>
         <button
           onClick={() => this.uvecaj()}
@@ -38,4 +37,15 @@ smanji = () => {
   }
 }
 
-export default Counter
+const mapState = (state) => {
+  return({
+    broj: state.counter.broj
+  })
+}
+
+const mainActions = {
+  incrementCounter,
+  decrementCounter
+};
+
+export default connect(mapState, dispatch => bindActionCreators(mainActions, dispatch))(Counter);
