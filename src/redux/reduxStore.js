@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import counter from './modules/counter'
+import formRedux from './modules/formaRedux'
 
 let middleWares = [thunk]
 
@@ -15,7 +16,8 @@ middleWares.push(logger)
 
 const store = createStore(
   combineReducers({
-    counter
+    counter,
+    formRedux
   }),
   applyMiddleware(...middleWares)
 )
