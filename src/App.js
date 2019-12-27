@@ -2,6 +2,7 @@ import React from 'react'
 import Counter from './counter.js'
 import Filmovi from './filmovi.js'
 import Home from './home.js'
+import Forma from './forma.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,10 +20,13 @@ const Routes = () => (
       <Counter/>
     </Route>
     <Route path="/filmovi">
-      <Filmovi/>
+      <Filmovi />
     </Route>
     <Route exact path="/">
-      <Home/>
+      <Home />
+    </Route>
+    <Route path="/input">
+      <Forma />
     </Route>
   </Switch>
 )
@@ -44,6 +48,9 @@ class App extends React.Component {
               </li>
               <li>
                 <Link to="/filmovi">Filmovi</Link>
+              </li>
+              <li>
+                <Link to="/input">Input</Link>
               </li>
             </ul>
           </nav>
